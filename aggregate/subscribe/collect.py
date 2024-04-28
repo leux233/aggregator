@@ -120,7 +120,7 @@ def aggregate(args: argparse.Namespace) -> None:
     nodes, workspace = [], os.path.join(PATH, "clash")
 
     if args.skip:
-        nodes = [p for p in proxies if p and isinstance(p, dict)]
+        nodes = clash.filter_proxies(proxies).get("proxies", [])
     else:
         binpath = os.path.join(workspace, clash_bin)
         filename = "config.yaml"
